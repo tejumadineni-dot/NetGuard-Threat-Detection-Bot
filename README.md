@@ -2,22 +2,27 @@
 
 ## Project Overview
 
-NetGuard is a Python-based Threat Detection Bot developed as part of the Unified Network Management Suite. The system monitors live network traffic, captures packets, analyzes traffic behavior, detects suspicious activities, generates alerts, and stores threat logs for security analysis.
+NetGuard is a Python-based real-time network monitoring and threat detection system.
+The project captures live network packets, analyzes traffic behavior, detects suspicious activities, generates alerts, and stores threat logs for security monitoring.
+
+Used Library:
+- Scapy
 
 ---
 
 # Features
 
-- Real-time packet sniffing
+- Live packet sniffing
 - Source and destination IP extraction
 - Protocol identification
 - Packet size monitoring
-- Suspicious IP detection
+- Suspicious activity detection
 - High bandwidth detection
 - Unauthorized IP detection
 - Alert generation
 - Threat logging
-- Modular architecture
+- Unit test case implementation
+- Exception logging
 
 ---
 
@@ -25,84 +30,104 @@ NetGuard is a Python-based Threat Detection Bot developed as part of the Unified
 
 - Python
 - Scapy
-- File Handling
-- Modular Programming
+- VS Code
+- GitHub
 
 ---
 
 # Project Structure
 
-```plaintext
 NetGuard/
+
 │
+
 ├── main.py
-├── packet_sniffer.py
-├── detector.py
-├── alerts.py
-├── logger.py
-├── config.py
-├── threat_logs.txt
-└── README.md
-```
+
+├── requirements.txt
+
+├── README.md
+
+│
+
+├── services/
+
+│   ├── __init__.py
+
+│   ├── packet_sniffer.py
+
+│   └── detector.py
+
+│
+
+├── utils/
+
+│   ├── __init__.py
+
+│   ├── alerts.py
+
+│   └── logger.py
+
+│
+
+├── config/
+
+│   ├── __init__.py
+
+│   └── config.py
+
+│
+
+├── tests/
+
+│   └── test_detector.py
+
+│
+
+├── logs/
+
+│   └── threat_logs.txt
 
 ---
 
 # Module Description
 
 ## main.py
-Starts the application and initializes packet monitoring.
+Entry point of the application.
 
 ## packet_sniffer.py
-Captures live network packets and extracts:
-- Source IP
-- Destination IP
-- Packet Size
-- Protocol
-- Timestamp
+Captures live network packets and extracts packet details.
 
 ## detector.py
-Performs threat analysis and threat detection.
-
-### Detection Features
-- Suspicious IP Detection
-- High Bandwidth Detection
-- Unauthorized IP Detection
+Detects suspicious activities, unauthorized access, and high bandwidth usage.
 
 ## alerts.py
-Generates alert messages for detected threats.
+Generates alert messages.
 
 ## logger.py
-Stores threat logs into `threat_logs.txt`.
+Stores threat details into log files.
 
 ## config.py
-Stores threshold values and trusted IP configurations.
+Stores threshold values and trusted IP addresses.
+
+## test_detector.py
+Validates threat detection scenarios using unit test cases.
 
 ---
 
-# Detection Logic
+# Threats Detected
 
-## Test Case 1 – Suspicious IP Detection
-If the same IP sends repeated packets more than the configured threshold, the system generates an alert.
+## 1. Unauthorized Access
+Detects unknown IP addresses.
 
-## Test Case 2 – High Bandwidth Detection
-If packet size exceeds the configured threshold, the system identifies abnormal traffic behavior.
+## 2. Suspicious Activity
+Detects repeated requests from the same IP.
 
-## Test Case 3 – Unauthorized IP Detection
-If traffic is detected from an unknown IP address, the system generates an unauthorized access alert.
+## 3. High Bandwidth Usage
+Detects abnormal packet size and traffic usage.
 
 ---
 
-# How to Run the Project
-
-## Step 1
-Install required library:
-
-```bash
-pip install scapy
-```
-
-## Step 2
-Run the project:
+# Run The Project
 
 ```bash
 python main.py
@@ -110,38 +135,51 @@ python main.py
 
 ---
 
-# Sample Output
+# Run Unit Test Cases
 
-```plaintext
-Time: 2026-05-19 19:10:20
-Source IP: 192.168.55.103
-Destination IP: 142.x.x.x
-Packet Size: 1200
-Protocol: TCP
-
-[ALERT] High bandwidth usage detected from IP: 192.168.55.103
+```bash
+python tests/test_detector.py
 ```
 
 ---
 
-# Threat Log Example
+# Sample Output
 
 ```plaintext
-2026-05-19 19:10:20 - Threat detected from IP: 192.168.55.103
+[ALERT] Unauthorized Access detected from IP: 192.168.55.1
+
+[ALERT] High Bandwidth Usage detected from IP: 192.168.1.101
 ```
+
+---
+
+# Logging
+
+Threat details are stored in:
+
+```plaintext
+logs/threat_logs.txt
+```
+
+Logged Details:
+- Timestamp
+- Threat Type
+- IP Address
+- Packet Size
+- Protocol
 
 ---
 
 # Future Enhancements
 
-- GUI dashboard integration
-- Email alert notifications
-- Database log storage
-- Machine learning-based anomaly detection
+- Email alert system
+- Dashboard visualization
+- Machine learning-based threat detection
+- Database integration
 - Real-time monitoring dashboard
 
 ---
 
 # Conclusion
 
-NetGuard provides a lightweight and modular threat detection system capable of monitoring live network traffic and identifying suspicious activities in real time.
+NetGuard is a modular real-time network threat detection system that improves network monitoring by identifying suspicious traffic behavior and generating security alerts
